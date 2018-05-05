@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Repository\Api\ContactRepository;
+use App\Repository\ContactRepository;
 use App\Http\Resources\ContactResource;
 
 class ContactController extends Controller
@@ -10,7 +10,7 @@ class ContactController extends Controller
     /**
      * Get contacts by limit and per page
      *
-     * @param \App\Repository\Api\ContactRepository $contactRepository
+     * @param \App\Repository\ContactRepository $contactRepository
      * @return \Illuminate\Http\Response
      */
     public function index(ContactRepository $contactRepository)
@@ -25,7 +25,7 @@ class ContactController extends Controller
     /**
      * Show contact by id
      *
-     * @param \App\Repository\Api\ContactRepository $contactRepository
+     * @param \App\Repository\ContactRepository $contactRepository
      * @param int $id
      * @return \Illuminate\Http\Response
      */
