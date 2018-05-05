@@ -13,7 +13,7 @@ class ContactRepository
      * @param  int  $limit
      * @return \App\Model\Contact
      */
-    public function get($limit = 20, $perPage)
+    public function get($limit = 20, $perPage = 15)
     {
         $contactModel = new Contact();
 

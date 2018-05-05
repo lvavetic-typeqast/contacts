@@ -31,6 +31,10 @@ class ContactController extends Controller
      */
     public function show(ContactRepository $contactRepository, $id)
     {
-
+        $contacts = $contactRepository->getById($id);
+        
+        $contactResource = new ContactResource($contacts);
+        
+        return $contactResource;
     }
 }
