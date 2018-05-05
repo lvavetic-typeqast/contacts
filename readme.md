@@ -62,11 +62,9 @@ Run following command in terminal:
 npm install
 ```
 
-```
-
 ### ** Step 6: Database **
 
-Create database schema `contacts_db`.
+Create database schema `agroklub_db_new`.
 
 Run following commands in terminal to start migrations and seeders:
 
