@@ -17,7 +17,7 @@ class CreateContactTable extends Migration
             $table->string('firstname', 60);
             $table->string('lastname', 60);
             $table->string('email', 100)->unique();
-            $table->string('profile_photo', 100);
+            $table->string('profile_photo', 100)->nullable();
             $table->unsignedTinyInteger('is_favorite')->nullable();
             $table->timestamps();
         });
