@@ -11,7 +11,7 @@ class ContactRepository
      *
      * @param  int  $limit
      * @param  int  $limit
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \App\Model\Contact
      */
     public function get($limit = 20, $perPage)
     {
@@ -24,5 +24,22 @@ class ContactRepository
             ->paginate($perPage);
 
         return $contacts;
+    }
+    
+    /**
+     * Get contacts by contact id
+     *
+     * @param  int  $id
+     * @return \App\Model\Contact
+     */
+    public function getById($id)
+    {
+        $contactModel = new Contact();
+
+        $contact = $contactModel
+            ->with('numbers')
+            ->find($id);
+
+        return $contact;
     }
 }

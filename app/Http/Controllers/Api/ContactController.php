@@ -10,6 +10,7 @@ class ContactController extends Controller
     /**
      * Get contacts by limit and per page
      *
+     * @param \App\Repository\Api\ContactRepository $contactRepository
      * @return \Illuminate\Http\Response
      */
     public function index(ContactRepository $contactRepository)
@@ -22,11 +23,13 @@ class ContactController extends Controller
     }
     
     /**
-     * Insert new contact
+     * Show contact by id
      *
+     * @param \App\Repository\Api\ContactRepository $contactRepository
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function insert()
+    public function show(ContactRepository $contactRepository, $id)
     {
 
     }
