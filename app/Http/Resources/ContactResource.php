@@ -14,15 +14,13 @@ class ContactResource extends Resource
      */
     public function toArray($request)
     {        
-        return parent::toArray($request);
-//        return ['data' => $this->collection];
-//        return [
-//            'id' => $this->id,
-//            'firstname' => $this->firstname,
-//            'lastname' => $this->lastname,
-//            'email' => $this->email,
-//            'is_favorite' => $this->is_favorite,
-//            'created_at' => $this->created_at,
-//        ];
+        return [
+            'id' => $this->id,
+            'firstname' => $this->firstname,
+            'lastname' => $this->lastname,
+            'email' => $this->email,
+            'is_favorite' => $this->is_favorite,
+            'created_at' => $this->created_at,
+        ];
     }
 }

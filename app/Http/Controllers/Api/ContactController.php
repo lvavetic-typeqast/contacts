@@ -8,7 +8,7 @@ use App\Http\Resources\ContactResource;
 class ContactController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Get contacts by limit and per page
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,5 +19,15 @@ class ContactController extends Controller
         $contactResource = new ContactResource($contacts);
         
         return $contactResource->collection($contacts);
+    }
+    
+    /**
+     * Insert new contact
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function insert()
+    {
+
     }
 }
