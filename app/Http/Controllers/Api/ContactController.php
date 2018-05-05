@@ -31,9 +31,25 @@ class ContactController extends Controller
      */
     public function show(ContactRepository $contactRepository, $id)
     {
-        $contacts = $contactRepository->getById($id);
+        $contact = $contactRepository->getById($id);
         
-        $contactResource = new ContactResource($contacts);
+        $contactResource = new ContactResource($contact);
+        
+        return $contactResource;
+    }
+    
+    /**
+     * Delete contact by id
+     *
+     * @param \App\Repository\ContactRepository $contactRepository
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(ContactRepository $contactRepository, $id)
+    {
+        $contact = $contactRepository->deleteById($id);
+        
+        $contactResource = new ContactResource($contact);
         
         return $contactResource;
     }

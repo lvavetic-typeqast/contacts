@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Api;
+namespace App\Repository;
 
 use App\Model\Contact;
 
@@ -53,8 +53,10 @@ class ContactRepository
     {
         $contactModel = new Contact();
 
-        $contact = $contactModel->find($id);
+        $contact = $contactModel->findOrFail($id);
         
         $contact->delete();
+        
+        return $contact;
     }
 }
