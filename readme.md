@@ -64,7 +64,7 @@ npm install
 
 ### ** Step 6: Database **
 
-Create database schema `agroklub_db_new`.
+Create database schema `contacts_db`.
 
 Run following commands in terminal to start migrations and seeders:
 
