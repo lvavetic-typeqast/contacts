@@ -27,7 +27,7 @@ class ContactRepository
     }
     
     /**
-     * Get contacts by contact id
+     * Get contact by contact id
      *
      * @param  int  $id
      * @return \App\Model\Contact
@@ -38,8 +38,23 @@ class ContactRepository
 
         $contact = $contactModel
             ->with('numbers')
-            ->find($id);
+            ->findOrFail($id);
 
         return $contact;
+    }
+    
+    /**
+     * Delete contact by contact id
+     *
+     * @param  int  $id
+     * @return void
+     */
+    public function deleteById($id)
+    {
+        $contactModel = new Contact();
+
+        $contact = $contactModel->find($id);
+        
+        $contact->delete();
     }
 }
