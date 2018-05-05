@@ -12,7 +12,7 @@ use Illuminate\Routing\Router;
 
 // contacts
 $router->get('contacts/', 'ContactController@index');
-$router->get('contacts/{id}/', 'ContactController@show');
-$router->post('contacts/', 'ContactController@insert');
-$router->put('contacts/{id}/', 'ContactController@update');
-$router->delete('contacts/{id}/', 'ContactController@delete');
+$router->get('contact/{id}/', 'ContactController@show');
+$router->post('contact/', 'ContactController@insert');
+$router->put('contact/{id}/', 'ContactController@update');
+$router->delete('contact/{id}/', 'ContactController@delete');

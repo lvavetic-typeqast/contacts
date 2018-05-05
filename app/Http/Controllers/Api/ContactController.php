@@ -39,6 +39,22 @@ class ContactController extends Controller
     }
     
     /**
+     * Find contact by id and update it
+     *
+     * @param \App\Repository\ContactRepository $contactRepository
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(ContactRepository $contactRepository, $id)
+    {
+        $contact = $contactRepository->update($this->request, $id);
+        
+        $contactResource = new ContactResource($contact);
+        
+        return $contactResource;
+    }
+    
+    /**
      * Insert new contact
      *
      * @param \App\Repository\ContactRepository $contactRepository
@@ -47,12 +63,13 @@ class ContactController extends Controller
      */
     public function insert(ContactRepository $contactRepository)
     {
-        $contact = $contactRepository->create();
+        $contact = $contactRepository->create($this->request);
         
         $contactResource = new ContactResource($contact);
         
         return $contactResource;
     }
+    
     
     /**
      * Delete contact by id
