@@ -21,4 +21,18 @@ class PhoneNumberController extends Controller
         
         return $phoneNumberResource->collection($phoneNumbers);
     }
+    
+    /**
+     * Show phone number by id
+     *
+     * @param \App\Repository\PhoneNumberRepository $phoneNumberRepository
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(PhoneNumberRepository $phoneNumberRepository, $id)
+    {
+        $phoneNumber = $phoneNumberRepository->findById($id);
+        
+        return new PhoneNumberResource($phoneNumber);
+    }
 }
