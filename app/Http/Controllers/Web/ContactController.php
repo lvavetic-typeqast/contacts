@@ -22,6 +22,6 @@ class ContactController extends Controller
             'contacts' => $contacts['data'],
         ];
         
-        return $this->response->view('web.contact.index', $data);
+        return $this->response->view('web.pages.contact.index', $data);
     }
 }
