@@ -102,4 +102,17 @@ class ContactRepository
 
         return $contact;
     }
+    
+    /**
+     * Convert json data to array
+     *
+     * @param  string $url
+     * @return array
+     */
+    public function getData($url)
+    {
+        $jsonObject = file_get_contents($url);
+        
+        return json_decode($jsonObject, true);
+    }
 }

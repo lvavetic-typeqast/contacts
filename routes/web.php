@@ -13,3 +13,5 @@ use Illuminate\Routing\Router;
 $router->get('/', function () {
     return view('welcome');
 });
+
+$router->get('contacts/', 'ContactController@index');
