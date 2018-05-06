@@ -62,6 +62,10 @@ Run following command in terminal:
 npm install
 ```
 
+```
+npm run development
+```
+
 ### ** Step 6: Database **
 
 Create database schema `contacts_db`.

@@ -32,7 +32,7 @@ class ContactRepository
      * @param  int  $id
      * @return \App\Model\Contact
      */
-    public function getById($id)
+    public function findById($id)
     {
         $contactModel = new Contact();
 

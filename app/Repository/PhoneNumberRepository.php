@@ -32,7 +32,7 @@ class PhoneNumberRepository
      * @param  int  $id
      * @return \App\Model\PhoneNumber
      */
-    public function getById($id)
+    public function findById($id)
     {
         $phoneNumberModel = new PhoneNumber();
 
