@@ -33,7 +33,7 @@ class Contact extends Eloquent
     protected $fillable = ['firstname', 'lastname', 'email', 'profile_photo', 'is_favorite'];
     
     /**
-     * Fields which have to be convert to null in case of empty imput.
+     * Fields which have to be convert to null in case of empty input.
      *
      * @var array
      */

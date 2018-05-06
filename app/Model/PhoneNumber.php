@@ -10,13 +10,6 @@ class PhoneNumber extends Eloquent
      * @var string
      */
     protected $table = 'phone_number';
-
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
     
     /**
      * The attributes that aren't mass assignable.
@@ -33,7 +26,7 @@ class PhoneNumber extends Eloquent
     protected $fillable = ['number', 'label'];
     
     /**
-     * Fields which have to be convert to null in case of empty imput.
+     * Fields which have to be convert to null in case of empty input.
      *
      * @var array
      */
