@@ -33,9 +33,7 @@ class ContactController extends Controller
     {
         $contact = $contactRepository->getById($id);
         
-        $contactResource = new ContactResource($contact);
-        
-        return $contactResource;
+        return new ContactResource($contact);
     }
     
     /**
@@ -49,9 +47,7 @@ class ContactController extends Controller
     {
         $contact = $contactRepository->update($this->request, $id);
         
-        $contactResource = new ContactResource($contact);
-        
-        return $contactResource;
+        return new ContactResource($contact);
     }
     
     /**
@@ -65,9 +61,7 @@ class ContactController extends Controller
     {
         $contact = $contactRepository->create($this->request);
         
-        $contactResource = new ContactResource($contact);
-        
-        return $contactResource;
+        return new ContactResource($contact);       
     }
     
     
@@ -82,8 +76,6 @@ class ContactController extends Controller
     {
         $contact = $contactRepository->deleteById($id);
         
-        $contactResource = new ContactResource($contact);
-        
-        return $contactResource;
+        return new ContactResource($contact);
     }
 }
