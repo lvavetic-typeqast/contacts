@@ -7,7 +7,7 @@ use App\Repository\ContactRepository;
 class ContactController extends Controller
 {
     /**
-     * Get contacts from API
+     * Get contacts from API and pass it to view
      *
      * @param \App\Repository\ContactRepository $contactRepository
      * @return \Illuminate\Http\Response
@@ -22,6 +22,6 @@ class ContactController extends Controller
             'contacts' => $contacts['data'],
         ];
         
-        //create response to view
+        return $this->response->view('web.contact.index', $data);
     }
 }
