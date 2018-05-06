@@ -1,6 +1,6 @@
 # ** Contact App **
 
-Contact App is aplication based on PHP Laravel framework for backend and RESTful API and HTML, SASS and JS for frontend. Aplication provides a list of contacts and possibility for creating a list of favorites contacts. 
+Contact App is aplication based on PHP Laravel framework for backend and RESTful API and HTML, SASS and Vue.js for frontend. Aplication provides a list of contacts and possibility for creating a list of favorites contacts. 
 
 ## ** Configuration **
 
