@@ -35,4 +35,18 @@ class PhoneNumberController extends Controller
         
         return new PhoneNumberResource($phoneNumber);
     }
+    
+    /**
+     * Insert new phone number
+     *
+     * @param \App\Repository\PhoneNumberRepository $phoneNumberRepository
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function insert(PhoneNumberRepository $phoneNumberRepository)
+    {
+        $phoneNumber = $phoneNumberRepository->create($this->request);
+        
+        return new PhoneNumberResource($phoneNumber);  
+    }
 }
