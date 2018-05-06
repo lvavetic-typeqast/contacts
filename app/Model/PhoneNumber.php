@@ -16,7 +16,7 @@ class PhoneNumber extends Eloquent
      *
      * @var bool
      */
-    public $timestamps = true;
+    public $timestamps = false;
     
     /**
      * The attributes that aren't mass assignable.

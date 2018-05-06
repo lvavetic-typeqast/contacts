@@ -49,4 +49,32 @@ class PhoneNumberController extends Controller
         
         return new PhoneNumberResource($phoneNumber);  
     }
+    
+    /**
+     * Find phone number by id and update it
+     *
+     * @param \App\Repository\PhoneNumberRepository $phoneNumberRepository
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(PhoneNumberRepository $phoneNumberRepository, $id)
+    {
+        $phoneNumber = $phoneNumberRepository->update($this->request, $id);
+        
+        return new PhoneNumberResource($phoneNumber);  
+    }
+    
+    /**
+     * Delete contact by id
+     *
+     * @param \App\Repository\PhoneNumberRepository $phoneNumberRepository
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(PhoneNumberRepository $phoneNumberRepository, $id)
+    {
+        $phoneNumber = $phoneNumberRepository->deleteById($id);
+        
+        return new PhoneNumberResource($phoneNumber);  
+    }
 }
