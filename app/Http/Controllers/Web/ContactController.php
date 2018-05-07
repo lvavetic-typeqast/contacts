@@ -14,7 +14,7 @@ class ContactController extends Controller
      */
     public function index(ContactRepository $contactRepository)
     {
-        $url = 'http://www.contacts.dev/api/contacts';
+        $url = 'http://www.contacts.com/api/contacts';
         
         $contacts = $contactRepository->getData($url);
         
