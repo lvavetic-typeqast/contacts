@@ -7,11 +7,22 @@
 </head>
 <body>
     <div class="container-fluid">
-        @yield('content')
+        <div class='row'>
+            <div class='col-2'>
+               <!-- include left sidebar -->
+            </div>
+            <div class="col-8">
+                @yield('content')
+            </div>
+            <div class='col-2'>
+                 <!-- include right sidebar -->
+            </div>
+        </div>
     </div>
     
     
     @yield('footer')
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 </body>
 </html>
     
