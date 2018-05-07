@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Repository\PhoneNumberRepository;
 use App\Http\Resources\PhoneNumberResource;
+use App\Http\Requests\PhoneNumberRequest;
 
 class PhoneNumberController extends Controller
 {
@@ -39,13 +40,16 @@ class PhoneNumberController extends Controller
     /**
      * Insert new phone number
      *
+     * @param \App\Http\Requests\PhoneNumberRequest $phoneNumberRequest
      * @param \App\Repository\PhoneNumberRepository $phoneNumberRepository
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function insert(PhoneNumberRepository $phoneNumberRepository)
+    public function insert(PhoneNumberRequest $phoneNumberRequest, PhoneNumberRepository $phoneNumberRepository)
     {
-        $phoneNumber = $phoneNumberRepository->create($this->request);
+        $input = $phoneNumberRequest->validationData();
+        
+        $phoneNumber = $phoneNumberRepository->create($input);
         
         return new PhoneNumberResource($phoneNumber);  
     }
@@ -53,13 +57,16 @@ class PhoneNumberController extends Controller
     /**
      * Find phone number by id and update it
      *
+     * @param \App\Http\Requests\PhoneNumberRequest $phoneNumberRequest
      * @param \App\Repository\PhoneNumberRepository $phoneNumberRepository
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PhoneNumberRepository $phoneNumberRepository, $id)
+    public function update(PhoneNumberRequest $phoneNumberRequest, PhoneNumberRepository $phoneNumberRepository, $id)
     {
-        $phoneNumber = $phoneNumberRepository->update($this->request, $id);
+        $input = $phoneNumberRequest->validationData();
+        
+        $phoneNumber = $phoneNumberRepository->update($input, $id);
         
         return new PhoneNumberResource($phoneNumber);  
     }

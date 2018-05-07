@@ -63,16 +63,16 @@ class PhoneNumberRepository
     /**
      * Create new phone number
      *
-     * @param  array $request
+     * @param  array $inputs
      * @return \App\Model\PhoneNumber
      */
-    public function create($request)
+    public function create(array $inputs)
     {
         $phoneNumberModel = new PhoneNumber();
 
-        $phoneNumberModel->contact_id = $request->input('contact_id');
-        $phoneNumberModel->number = $request->input('number');
-        $phoneNumberModel->label = $request->input('label');
+        $phoneNumberModel->contact_id = $inputs['contact_id'];
+        $phoneNumberModel->number = $inputs['number'];
+        $phoneNumberModel->label = $inputs['label'];
         
         $phoneNumberModel->save();
 
@@ -82,19 +82,19 @@ class PhoneNumberRepository
     /**
      * Find phone number by id and update it
      *
-     * @param  array $request
+     * @param  array $inputs
      * @param int $id
      * @return \App\Model\PhoneNumber
      */
-    public function update($request, $id)
+    public function update(array $inputs, $id)
     {
         $phoneNumberModel = new PhoneNumber();
         
         $phoneNumber = $phoneNumberModel->findOrFail($id);
 
-        $phoneNumber->contact_id = $request->input('contact_id');
-        $phoneNumber->number = $request->input('number');
-        $phoneNumber->label = $request->input('label');
+        $phoneNumber->contact_id = $inputs['contact_id'];
+        $phoneNumber->number = $inputs['number'];
+        $phoneNumber->label = $inputs['label'];
         
         $phoneNumber->save();
 
