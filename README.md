@@ -12,8 +12,8 @@ Copy following lines to `C:/Windows/System32/drivers/etc/hosts`. When editing ho
 #----------------------------------------------
 # CONTACT APP - LOCALHOST
 #----------------------------------------------
-127.0.0.1    www.contact.dev
-127.0.0.1    contact.dev
+127.0.0.1    www.contact.com
+127.0.0.1    contact.com
 
 ```
 
@@ -26,9 +26,9 @@ Copy following lines to `C:/wamp/bin/apache/apachex.y.z/conf/extra/httpd-vhosts.
 # CONTACT APP LOCAL 
 #----------------------------------------------
 
-<VirtualHost contacts.dev:80>
-    ServerName contacts.dev
-    ServerAlias www.contacts.dev contacts.dev
+<VirtualHost contacts.com:80>
+    ServerName contacts.com
+    ServerAlias www.contacts.com contacts.com
     DocumentRoot "C:/xampp/htdocs/projects/contacts/public"
 	DirectoryIndex index.php
 	<Directory "C/xampp/htdocs/projects/contacts/public">
