@@ -63,17 +63,17 @@ class ContactRepository
     /**
      * Create new contact
      *
-     * @param  array $request
+     * @param  array $inputs
      * @return \App\Model\Contact
      */
-    public function create($request)
+    public function create(array $inputs)
     {
         $contactModel = new Contact();
 
-        $contactModel->firstname = $request->input('firstname');
-        $contactModel->lastname = $request->input('lastname');
-        $contactModel->email = $request->input('email');
-        $contactModel->is_favorite = $request->input('is_favorite');
+        $contactModel->firstname = $inputs['firstname'];
+        $contactModel->lastname = $inputs['lastname'];
+        $contactModel->email = $inputs['email'];
+        $contactModel->is_favorite = $inputs['is_favorite'];
         
         $contactModel->save();
 
@@ -83,20 +83,20 @@ class ContactRepository
     /**
      * Find contact by id and update it
      *
-     * @param  array $request
+     * @param  array $inputs
      * @param int $id
      * @return \App\Model\Contact
      */
-    public function update($request, $id)
+    public function update(array $inputs, $id)
     {
         $contactModel = new Contact();
         
         $contact = $contactModel->findOrFail($id);
 
-        $contact->firstname = $request->input('firstname');
-        $contact->lastname = $request->input('lastname');
-        $contact->email = $request->input('email');
-        $contact->is_favorite = $request->input('is_favorite');
+        $contact->firstname = $inputs['firstname'];
+        $contact->lastname = $inputs['lastname'];
+        $contact->email = $inputs['email'];
+        $contact->is_favorite = $inputs['is_favorite'];
         
         $contact->save();
 

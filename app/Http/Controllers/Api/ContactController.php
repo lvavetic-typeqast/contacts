@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Repository\ContactRepository;
 use App\Http\Resources\ContactResource;
+use App\Http\Requests\ContactRequest;
 
 class ContactController extends Controller
 {
@@ -39,13 +40,16 @@ class ContactController extends Controller
     /**
      * Insert new contact
      *
+     * @param \App\Http\Requests\ContactRequest $contactRequest
      * @param \App\Repository\ContactRepository $contactRepository
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function insert(ContactRepository $contactRepository)
+    public function insert(ContactRequest $contactRequest, ContactRepository $contactRepository)
     {
-        $contact = $contactRepository->create($this->request);
+        $input = $contactRequest->validationData();
+        
+        $contact = $contactRepository->create($input);
         
         return new ContactResource($contact);       
     }
@@ -53,13 +57,16 @@ class ContactController extends Controller
     /**
      * Find contact by id and update it
      *
+     * @param \App\Http\Requests\ContactRequest $contactRequest
      * @param \App\Repository\ContactRepository $contactRepository
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ContactRepository $contactRepository, $id)
+    public function update(ContactRequest $contactRequest, ContactRepository $contactRepository, $id)
     {
-        $contact = $contactRepository->update($this->request, $id);
+        $input = $contactRequest->validationData();
+        
+        $contact = $contactRepository->update($input, $id);
         
         return new ContactResource($contact);
     }
