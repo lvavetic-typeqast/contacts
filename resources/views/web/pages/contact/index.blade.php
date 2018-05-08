@@ -5,6 +5,7 @@
     <ul class="list-group float-center" id="searchbox">
         <li class="list-group-item" >
             <input type="text" name="search" id="search" class="form-control" placeholder="search" v-model="search">
+            <span>@{{ currentStatus }} </span>
         </li>
         
         <li v-for="models in models.data" class="list-group-item">
@@ -29,7 +30,7 @@ var searchbox = new Vue({
     data: {
       search: '',
       models: '',
-      errors: '',
+      currentStatus: '',
     },
     watch: {
         search: function() {
@@ -42,16 +43,17 @@ var searchbox = new Vue({
     methods: {
         findContact: _.debounce(function(){
             var searchbox = this
-            searchbox.model = 'Searching...'
+            searchbox.currentStatus = 'Searching...'
             axios.post('http://www.contacts.com/api/contact_search?search=' + searchbox.search)
                 .then(function (response) {
                     console.log(response.data)
+                    searchbox.currentStatus = "Wanted data has been found!"
                     searchbox.models = response.data
                 })
                 .catch(function(error){
-                    searchbox.errors = "Invalid entry!"
+                    searchbox.currentStatus = "Invalid entry!"
                 }) 
-        }, 500),
+        }, 1000),
     }
   })
 </script>
