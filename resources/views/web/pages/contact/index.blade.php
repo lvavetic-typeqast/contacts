@@ -3,14 +3,12 @@
 @section('content')
 
     <ul class="list-group float-center">
-        <li class="list-group-item">
+        <li class="list-group-item" id="searchbox">
             <input type="text" name="search" id="search" class="form-control" placeholder="search" v-model="search">
             <button class='btn btn-primary float-right mt-2'>Search</button>
+            <span>@{{ search }}</span>
         </li>
-        <div id="example-2">
-            <!-- `greet` is the name of a method defined below -->
-            <button v-on:click="greet">Greet</button>
-        </div>
+        
         @foreach ($contacts as $contact)
         <li class="list-group-item">{{ $contact['firstname'] }} {{ $contact['lastname'] }} 
             <span class='float-right'>
@@ -27,22 +25,12 @@
 @section('footer')
 
 <script>
-var example2 = new Vue({
-  el: '#example-2',
+var searchbox = new Vue({
+  el: '#search-box',
   data: {
-    name: 'Vue.js'
+    search: '',
+    result: '',
   },
-  // define methods under the `methods` object
-  methods: {
-    greet: function (event) {
-      // `this` inside methods points to the Vue instance
-      alert('Hello ' + this.name + '!')
-      // `event` is the native DOM event
-      if (event) {
-        alert(event.target.tagName)
-      }
-    }
-  }
 })
 </script>
 

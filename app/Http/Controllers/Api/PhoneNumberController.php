@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Repository\PhoneNumberRepository;
 use App\Http\Resources\PhoneNumberResource;
-use App\Http\Requests\PhoneNumberRequest;
+use App\Http\Requests\Api\PhoneNumberRequest;
 
 class PhoneNumberController extends Controller
 {
