@@ -24,6 +24,23 @@ class ContactController extends Controller
     }
     
     /**
+     * Search contacts
+     *
+     * @param \App\Repository\ContactRepository $contactRepository
+     * @return \Illuminate\Http\Response
+     */
+    public function search(ContactRepository $contactRepository)   
+    {
+        $keyword = $this->request->get('search');
+        
+        $contacts = $contactRepository->search(15, $keyword);
+        
+        $contactResource = new ContactResource($contacts);
+        
+        return $contactResource->collection($contacts);
+    }
+    
+    /**
      * Show contact by id
      *
      * @param \App\Repository\ContactRepository $contactRepository

@@ -10,7 +10,7 @@ class ContactRepository
      * Get all contacts
      *
      * @param  int  $limit
-     * @param  int  $limit
+     * @param  int  $perPage
      * @return \App\Model\Contact
      */
     public function get($limit = 20, $perPage = 15)
@@ -21,6 +21,29 @@ class ContactRepository
             ->with('numbers')
             ->orderBy('id', 'asc')
             ->limit($limit)
+            ->paginate($perPage);
+
+        return $contacts;
+    }
+    
+    /**
+     * Search all contacts
+     *
+     * @param  int  $perPage
+     * @param  string  $keyword
+     * @return \App\Model\Contact
+     */
+    public function search($perPage = 15, $keyword)
+    {
+        $contactModel = new Contact();
+
+        $contacts = $contactModel
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where('firstname', 'LIKE', '%'.$keyword.'%');
+                $query->orWhere('lastname', 'LIKE', '%'.$keyword.'%');
+            })
+            ->with('numbers')
+            ->orderBy('id', 'asc')
             ->paginate($perPage);
 
         return $contacts;

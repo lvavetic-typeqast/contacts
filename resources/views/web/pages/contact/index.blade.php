@@ -2,36 +2,58 @@
 
 @section('content')
 
-    <ul class="list-group float-center">
-        <li class="list-group-item" id="searchbox">
+    <ul class="list-group float-center" id="searchbox">
+        <li class="list-group-item" >
             <input type="text" name="search" id="search" class="form-control" placeholder="search" v-model="search">
-            <button class='btn btn-primary float-right mt-2'>Search</button>
-            <span>@{{ search }}</span>
         </li>
         
-        @foreach ($contacts as $contact)
-        <li class="list-group-item">{{ $contact['firstname'] }} {{ $contact['lastname'] }} 
+        <li v-for="models in models.data" class="list-group-item">
+            @{{ models.firstname }} @{{ models.lastname }} 
             <span class='float-right'>
                 <span id="add"><i class="fas fa-plus-circle"></i></span>
                 <i class="fas fa-edit"></i>
                 <i class="fas fa-trash"></i>
             </span>
         </li> 
-        @endforeach
     </ul>
 
 @endsection
     
 @section('footer')
-
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
 <script>
 var searchbox = new Vue({
-  el: '#search-box',
-  data: {
-    search: '',
-    result: '',
-  },
-})
+    el: '#searchbox',
+    data: {
+      search: '',
+      models: '',
+      errors: '',
+    },
+    watch: {
+        search: function() {
+            this.models = ''
+            if (this.search.length > 0) {
+                this.findContact()
+            }
+        }
+    },
+    methods: {
+        findContact: _.debounce(function(){
+            var searchbox = this
+            searchbox.model = 'Searching...'
+            axios.post('http://www.contacts.com/api/contact_search?search=' + searchbox.search)
+                .then(function (response) {
+                    console.log(response.data)
+                    searchbox.models = response.data
+                })
+                .catch(function(error){
+                    searchbox.errors = "Invalid entry!"
+                }) 
+        }, 500),
+    }
+  })
 </script>
 
 @endsection
