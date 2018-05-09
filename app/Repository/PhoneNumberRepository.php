@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Model\PhoneNumber;
 
-class PhoneNumberRepository 
+class PhoneNumberRepository extends Repository
 {
     /**
      * Get all phone numbers
@@ -13,7 +13,7 @@ class PhoneNumberRepository
      * @param  int  $limit
      * @return \App\Model\PhoneNumber
      */
-    public function get($limit = 20, $perPage = 15)
+    public function get(int $limit = 20, int $perPage = 15) : object
     {
         $phoneNumberModel = new PhoneNumber();
 
@@ -32,15 +32,15 @@ class PhoneNumberRepository
      * @param  int  $id
      * @return \App\Model\PhoneNumber
      */
-    public function findById($id)
+    public function findById(int $id) : ?PhoneNumber
     {
         $phoneNumberModel = new PhoneNumber();
 
         $phoneNumber = $phoneNumberModel
             ->with('contact')
-            ->findOrFail($id);
+            ->find($id);
 
-        return $phoneNumber;
+        return $phoneNumber ? $phoneNumber : null;
     }
     
     /**
@@ -49,7 +49,7 @@ class PhoneNumberRepository
      * @param  int  $id
      * @return \App\Model\PhoneNumber
      */
-    public function deleteById($id)
+    public function deleteById(int $id) : ?PhoneNumber
     {
         $phoneNumberModel = new PhoneNumber();
 
@@ -57,7 +57,7 @@ class PhoneNumberRepository
         
         $phoneNumber->delete();
         
-        return $phoneNumber;
+        return $phoneNumber ? $phoneNumber->delete() : null;
     }
     
     /**
@@ -66,7 +66,7 @@ class PhoneNumberRepository
      * @param  array $inputs
      * @return \App\Model\PhoneNumber
      */
-    public function create(array $inputs)
+    public function create(array $inputs) : PhoneNumber
     {
         $phoneNumberModel = new PhoneNumber();
 
@@ -86,7 +86,7 @@ class PhoneNumberRepository
      * @param int $id
      * @return \App\Model\PhoneNumber
      */
-    public function update(array $inputs, $id)
+    public function update(array $inputs, int $id) : ?PhoneNumber
     {
         $phoneNumberModel = new PhoneNumber();
         

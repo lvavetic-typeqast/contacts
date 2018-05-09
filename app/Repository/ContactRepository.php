@@ -5,7 +5,7 @@ namespace App\Repository;
 use App\Model\Contact;
 use App\Model\PhoneNumber;
 
-class ContactRepository 
+class ContactRepository extends Repository
 {
     /**
      * Get all contacts
@@ -146,17 +146,5 @@ class ContactRepository
         $phoneNumber->label = $input['label'];
 
         $contact->numbers()->save($phoneNumber);
-    }
-    
-    /**
-     * Get id not found error
-     *
-     * @param 
-     * @param  int $id
-     * @return 
-     */
-    public function errorIdNotFound($reponse, int $id) : object
-    {
-        return $reponse->json("Something went wrong! Probably the data with ID:" .$id. " does not exist");
     }
 }

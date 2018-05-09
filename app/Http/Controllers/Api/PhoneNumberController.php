@@ -14,7 +14,7 @@ class PhoneNumberController extends Controller
      * @param \App\Repository\PhoneNumberRepository $phoneNumberRepository
      * @return \Illuminate\Http\Response
      */
-    public function index(PhoneNumberRepository $phoneNumberRepository)
+    public function index(PhoneNumberRepository $phoneNumberRepository) : object
     {
         $phoneNumbers = $phoneNumberRepository->get(30,15);
         
@@ -30,11 +30,15 @@ class PhoneNumberController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(PhoneNumberRepository $phoneNumberRepository, $id)
+    public function show(PhoneNumberRepository $phoneNumberRepository, int $id) : object 
     {
-        $phoneNumber = $phoneNumberRepository->findById($id);
-        
-        return new PhoneNumberResource($phoneNumber);
+        $phoneNumber = $phoneNumberRepository->findById($id);       
+
+        if ($phoneNumber) {
+            return new PhoneNumberResource($phoneNumber);
+        } else {
+            abort(response()->json(['Something went wrong! Probably the data with ID:' .$id. ' does not exist']));
+        }
     }
     
     /**
@@ -45,7 +49,7 @@ class PhoneNumberController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function insert(PhoneNumberRequest $phoneNumberRequest, PhoneNumberRepository $phoneNumberRepository)
+    public function insert(PhoneNumberRequest $phoneNumberRequest, PhoneNumberRepository $phoneNumberRepository) : object
     {
         $input = $phoneNumberRequest->validationData();
         
@@ -62,13 +66,17 @@ class PhoneNumberController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PhoneNumberRequest $phoneNumberRequest, PhoneNumberRepository $phoneNumberRepository, $id)
+    public function update(PhoneNumberRequest $phoneNumberRequest, PhoneNumberRepository $phoneNumberRepository, int $id) : object
     {
         $input = $phoneNumberRequest->validationData();
         
         $phoneNumber = $phoneNumberRepository->update($input, $id);
-        
-        return new PhoneNumberResource($phoneNumber);  
+         
+        if ($phoneNumber) {
+            return new PhoneNumberResource($phoneNumber);
+        } else {
+            abort(response()->json(['Something went wrong! Probably the data with ID:' .$id. ' does not exist']));
+        }
     }
     
     /**
@@ -78,10 +86,14 @@ class PhoneNumberController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(PhoneNumberRepository $phoneNumberRepository, $id)
+    public function delete(PhoneNumberRepository $phoneNumberRepository, int $id) : object
     {
         $phoneNumber = $phoneNumberRepository->deleteById($id);
         
-        return new PhoneNumberResource($phoneNumber);  
+        if ($phoneNumber) {
+            return new PhoneNumberResource($phoneNumber);
+        } else {
+            abort(response()->json(['Something went wrong! Probably the data with ID:' .$id. ' does not exist']));
+        }  
     }
 }

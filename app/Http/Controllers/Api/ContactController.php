@@ -47,14 +47,14 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ContactRepository $contactRepository, $id) : object
+    public function show(ContactRepository $contactRepository, int $id) : object
     {
         $contact = $contactRepository->findById($id);
         
         if ($contact) {
             return new ContactResource($contact);
         } else {
-            return $contactRepository->errorIdNotFound($this->response, $id);
+            abort(response()->json(['Something went wrong! Probably the data with ID:' .$id. ' does not exist']));
         }
     }
     
@@ -83,7 +83,7 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ContactRequest $contactRequest, ContactRepository $contactRepository, $id) : object
+    public function update(ContactRequest $contactRequest, ContactRepository $contactRepository, int $id) : object
     {
         $input = $contactRequest->validationData();
         
@@ -92,7 +92,7 @@ class ContactController extends Controller
         if ($contact) {
             return new ContactResource($contact);
         } else {
-            return $contactRepository->errorIdNotFound($this->response, $id);
+            abort(response()->json(['Something went wrong! Probably the data with ID:' .$id. ' does not exist']));
         }
     }
     
@@ -103,15 +103,14 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(ContactRepository $contactRepository, $id) : object
+    public function delete(ContactRepository $contactRepository, int $id) : object
     {
         $contact = $contactRepository->deleteById($id);
         
         if ($contact) {
             return new ContactResource($contact);
         } else {
-            return $contactRepository->errorIdNotFound($this->response, $id);
+            abort(response()->json(['Something went wrong! Probably the data with ID:' .$id. ' does not exist']));
         }
-        
     }
 }
