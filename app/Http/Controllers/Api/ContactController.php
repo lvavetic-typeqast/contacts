@@ -95,10 +95,15 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(ContactRepository $contactRepository, $id)
+    public function delete(ContactRepository $contactRepository, $id) : object
     {
         $contact = $contactRepository->deleteById($id);
         
-        return new ContactResource($contact);
+        if($contact) {
+            return new ContactResource($contact);
+        } else {
+            return $this->response->json("Something went wrong!");
+        }
+        
     }
 }

@@ -73,15 +73,13 @@ class ContactRepository
      * @param  int  $id
      * @return void
      */
-    public function deleteById($id)
+    public function deleteById($id) : ?Contact
     {
         $contactModel = new Contact();
 
-        $contact = $contactModel->findOrFail($id);
+        $contact = $contactModel->find($id);
         
-        $contact->delete();
-        
-        return $contact;
+        return $contact ? $contact->delete() : null;
     }
     
     /**
@@ -90,7 +88,7 @@ class ContactRepository
      * @param  array $inputs
      * @return \App\Model\Contact
      */
-    public function create(array $inputs)
+    public function create(array $inputs) : Contact
     {
         $contactModel = new Contact();
     
@@ -101,7 +99,7 @@ class ContactRepository
         
         $contactModel->save();
         
-        $this->saveNumbers($contactModel, $inputs['numbers']);
+        $this->saveNumber($contactModel, $inputs['numbers']);
 
         return $contactModel;
     }
@@ -130,32 +128,19 @@ class ContactRepository
     }
     
     /**
-     * Convert json data to array
-     *
-     * @param  string $url
-     * @return array
-     */
-    public function getData($url)
-    {
-        $jsonObject = file_get_contents($url);
-        
-        return json_decode($jsonObject, true);
-    }
-    
-    /**
      * Save numbers relation
      *
      * @param \App\Model\Contact $contact
      * @param  array $input
      * @return void
      */
-    public function saveNumbers(Contact $contact, $input)
+    private function saveNumber(Contact $contact, $input)
     {
         $phoneNumber = new PhoneNumber();
-        
+
         $phoneNumber->number = $input['number'];
         $phoneNumber->label = $input['label'];
-        
+
         $contact->numbers()->save($phoneNumber);
     }
 }
