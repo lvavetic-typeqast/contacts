@@ -14,7 +14,7 @@ class ContactRepository
      * @param  int  $perPage
      * @return \App\Model\Contact
      */
-    public function get($limit = 20, $perPage = 15)
+    public function get($limit = 20, $perPage = 15) : Contact
     {
         $contactModel = new Contact();
 
@@ -56,15 +56,15 @@ class ContactRepository
      * @param  int  $id
      * @return \App\Model\Contact
      */
-    public function findById($id)
+    public function findById($id) : ?Contact
     {
         $contactModel = new Contact();
 
         $contact = $contactModel
             ->with('numbers')
-            ->findOrFail($id);
+            ->find($id);
 
-        return $contact;
+        return $contact ? $contact : null;
     }
     
     /**
@@ -111,12 +111,16 @@ class ContactRepository
      * @param int $id
      * @return \App\Model\Contact
      */
-    public function update(array $inputs, $id)
+    public function update(array $inputs, $id) : ?Contact
     {
         $contactModel = new Contact();
         
-        $contact = $contactModel->findOrFail($id);
-
+        $contact = $contactModel->find($id);
+        
+        if (! $contact) {
+            return null;
+        }
+        
         $contact->firstname = $inputs['firstname'];
         $contact->lastname = $inputs['lastname'];
         $contact->email = $inputs['email'];
@@ -134,7 +138,7 @@ class ContactRepository
      * @param  array $input
      * @return void
      */
-    private function saveNumber(Contact $contact, $input)
+    private function saveNumber(Contact $contact, $input) : void
     {
         $phoneNumber = new PhoneNumber();
 
@@ -142,5 +146,17 @@ class ContactRepository
         $phoneNumber->label = $input['label'];
 
         $contact->numbers()->save($phoneNumber);
+    }
+    
+    /**
+     * Get id not found error
+     *
+     * @param 
+     * @param  int $id
+     * @return 
+     */
+    public function errorIdNotFound($reponse, $id) : object
+    {
+        return $response->json("Something went wrong! Probably the data with ID:" .$id. " does not exist");
     }
 }

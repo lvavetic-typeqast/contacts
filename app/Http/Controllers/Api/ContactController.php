@@ -14,7 +14,7 @@ class ContactController extends Controller
      * @param \App\Repository\ContactRepository $contactRepository
      * @return \Illuminate\Http\Response
      */
-    public function index(ContactRepository $contactRepository)
+    public function index(ContactRepository $contactRepository) : object
     {
         $contacts = $contactRepository->get(30,15);
         
@@ -29,7 +29,7 @@ class ContactController extends Controller
      * @param \App\Repository\ContactRepository $contactRepository
      * @return \Illuminate\Http\Response
      */
-    public function search(ContactRepository $contactRepository)   
+    public function search(ContactRepository $contactRepository) : object 
     {
         $keyword = $this->request->get('search');
         
@@ -47,11 +47,15 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ContactRepository $contactRepository, $id)
+    public function show(ContactRepository $contactRepository, $id) : object
     {
         $contact = $contactRepository->findById($id);
         
-        return new ContactResource($contact);
+        if ($contact) {
+            return new ContactResource($contact);
+        } else {
+            return $contactRepository->errorIdNotFound($this->response, $id);
+        }
     }
     
     /**
@@ -62,7 +66,7 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function insert(ContactRequest $contactRequest, ContactRepository $contactRepository)
+    public function insert(ContactRequest $contactRequest, ContactRepository $contactRepository) : object
     {
         $input = $contactRequest->validationData();
         
@@ -79,13 +83,17 @@ class ContactController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ContactRequest $contactRequest, ContactRepository $contactRepository, $id)
+    public function update(ContactRequest $contactRequest, ContactRepository $contactRepository, $id) : object
     {
         $input = $contactRequest->validationData();
         
         $contact = $contactRepository->update($input, $id);
         
-        return new ContactResource($contact);
+        if ($contact) {
+            return new ContactResource($contact);
+        } else {
+            return $contactRepository->errorIdNotFound($this->response, $id);
+        }
     }
     
     /**
@@ -99,10 +107,10 @@ class ContactController extends Controller
     {
         $contact = $contactRepository->deleteById($id);
         
-        if($contact) {
+        if ($contact) {
             return new ContactResource($contact);
         } else {
-            return $this->response->json("Something went wrong!");
+            return $contactRepository->errorIdNotFound($this->response, $id);
         }
         
     }
