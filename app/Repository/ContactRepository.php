@@ -14,7 +14,7 @@ class ContactRepository
      * @param  int  $perPage
      * @return \App\Model\Contact
      */
-    public function get($limit = 20, $perPage = 15) : Contact
+    public function get(int $limit = 20, int $perPage = 15) : object
     {
         $contactModel = new Contact();
 
@@ -34,7 +34,7 @@ class ContactRepository
      * @param  string  $keyword
      * @return \App\Model\Contact
      */
-    public function search($perPage = 15, $keyword)
+    public function search(int $perPage = 15, $keyword=null)
     {
         $contactModel = new Contact();
 
@@ -56,7 +56,7 @@ class ContactRepository
      * @param  int  $id
      * @return \App\Model\Contact
      */
-    public function findById($id) : ?Contact
+    public function findById(int $id) : ?Contact
     {
         $contactModel = new Contact();
 
@@ -73,7 +73,7 @@ class ContactRepository
      * @param  int  $id
      * @return void
      */
-    public function deleteById($id) : ?Contact
+    public function deleteById(int $id) : ?Contact
     {
         $contactModel = new Contact();
 
@@ -111,7 +111,7 @@ class ContactRepository
      * @param int $id
      * @return \App\Model\Contact
      */
-    public function update(array $inputs, $id) : ?Contact
+    public function update(array $inputs, int $id) : ?Contact
     {
         $contactModel = new Contact();
         
@@ -138,7 +138,7 @@ class ContactRepository
      * @param  array $input
      * @return void
      */
-    private function saveNumber(Contact $contact, $input) : void
+    private function saveNumber(Contact $contact, int $input) : void
     {
         $phoneNumber = new PhoneNumber();
 
@@ -155,8 +155,8 @@ class ContactRepository
      * @param  int $id
      * @return 
      */
-    public function errorIdNotFound($reponse, $id) : object
+    public function errorIdNotFound($reponse, int $id) : object
     {
-        return $response->json("Something went wrong! Probably the data with ID:" .$id. " does not exist");
+        return $reponse->json("Something went wrong! Probably the data with ID:" .$id. " does not exist");
     }
 }
