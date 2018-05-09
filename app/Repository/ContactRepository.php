@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Model\Contact;
+use App\Model\PhoneNumber;
 
 class ContactRepository 
 {
@@ -92,13 +93,15 @@ class ContactRepository
     public function create(array $inputs)
     {
         $contactModel = new Contact();
-
+    
         $contactModel->firstname = $inputs['firstname'];
         $contactModel->lastname = $inputs['lastname'];
         $contactModel->email = $inputs['email'];
         $contactModel->is_favorite = $inputs['is_favorite'];
         
         $contactModel->save();
+        
+        $this->saveNumbers($contactModel, $inputs['numbers']);
 
         return $contactModel;
     }
@@ -122,7 +125,7 @@ class ContactRepository
         $contact->is_favorite = $inputs['is_favorite'];
         
         $contact->save();
-
+       
         return $contact;
     }
     
@@ -137,5 +140,22 @@ class ContactRepository
         $jsonObject = file_get_contents($url);
         
         return json_decode($jsonObject, true);
+    }
+    
+    /**
+     * Save numbers relation
+     *
+     * @param \App\Model\Contact $contact
+     * @param  array $input
+     * @return void
+     */
+    public function saveNumbers(Contact $contact, $input)
+    {
+        $phoneNumber = new PhoneNumber();
+        
+        $phoneNumber->number = $input['number'];
+        $phoneNumber->label = $input['label'];
+        
+        $contact->numbers()->save($phoneNumber);
     }
 }

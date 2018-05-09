@@ -24,7 +24,7 @@ class ContactRequest extends FormRequest
         return [
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'required|unique',
+            'email' => 'required',
         ];
     }
 
@@ -41,6 +41,7 @@ class ContactRequest extends FormRequest
             'email' => $this->input('email'),
             'profile_photo' => $this->file('profile_photo'),
             'is_favorite' => $this->input('is_favorite'),
+            'numbers' => $this->input('numbers'),
         ];
 
         return $input;

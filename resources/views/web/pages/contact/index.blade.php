@@ -9,7 +9,7 @@
         </li>
         
         <li v-for="models in models.data" class="list-group-item">
-            @{{ models.firstname }} @{{ models.lastname }} 
+            @{{ models.firstname }} @{{ models.lastname }} , @{{ models.email }}
             <span class='float-right'>
                 <span id="add"><i class="fas fa-plus-circle"></i></span>
                 <i class="fas fa-edit"></i>
