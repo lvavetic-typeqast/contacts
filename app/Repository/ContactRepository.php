@@ -79,7 +79,13 @@ class ContactRepository extends Repository
 
         $contact = $contactModel->find($id);
 
-        return $contact ? $contact->delete() : null;
+        if (! $contact) {
+            return null;
+        }
+
+        $contact->delete();
+
+        return $contact;
     }
 
     /**
