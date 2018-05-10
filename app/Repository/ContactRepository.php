@@ -71,7 +71,7 @@ class ContactRepository extends Repository
      * Delete contact by contact id
      *
      * @param  int  $id
-     * @return void
+     * @return \App\Model\Contact
      */
     public function deleteById(int $id) : ?Contact
     {
