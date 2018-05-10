@@ -13,7 +13,7 @@ class ContactRequest extends FormRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -36,12 +36,12 @@ class ContactRequest extends FormRequest
     public function validationData()
     {
         $input = [
-            'firstname' => $this->input('firstname'),
-            'lastname' => $this->input('lastname'),
-            'email' => $this->input('email'),
-            'profile_photo' => $this->file('profile_photo'),
-            'is_favorite' => $this->input('is_favorite'),
-            'numbers' => $this->input('numbers'),
+            'firstname' => cleanup($this->input('firstname')),
+            'lastname' => cleanup($this->input('lastname')),
+            'email' => cleanup($this->input('email')),
+            'profile_photo' => cleanup($this->file('profile_photo')),
+            'is_favorite' => cleanup($this->input('is_favorite')),
+            'numbers' => cleanup($this->input('numbers')),
         ];
 
         return $input;

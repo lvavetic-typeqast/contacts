@@ -13,7 +13,7 @@ class PhoneNumberRequest extends FormRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -35,9 +35,9 @@ class PhoneNumberRequest extends FormRequest
     public function validationData()
     {
         $input = [
-            'contact_id' => $this->input('contact_id'),
-            'number' => $this->input('number'),
-            'label' => $this->input('label'),
+            'contact_id' => cleanup($this->input('contact_id')),
+            'number' => cleanup($this->input('number')),
+            'label' => cleanup($this->input('label')),
         ];
 
         return $input;

@@ -1,6 +1,6 @@
 # ** Contact App **
 
-Contact App is aplication based on PHP Laravel framework for backend and RESTful API and HTML, SASS and Vue.js for frontend. Aplication provides a list of contacts and possibility for creating a list of favorites contacts. 
+Contact App is aplication based on PHP Laravel framework for backend and RESTful API and HTML, SASS and Vue.js for frontend. Aplication provides a list of contacts and possibility for creating a list of favorites contacts.
 
 ## ** Configuration **
 
@@ -12,8 +12,8 @@ Copy following lines to `C:/Windows/System32/drivers/etc/hosts`. When editing ho
 #----------------------------------------------
 # CONTACT APP - LOCALHOST
 #----------------------------------------------
-127.0.0.1    www.contact.com
-127.0.0.1    contact.com
+127.0.0.1    www.contacts.com
+127.0.0.1    contacts.com
 
 ```
 
@@ -23,7 +23,7 @@ Copy following lines to `C:/wamp/bin/apache/apachex.y.z/conf/extra/httpd-vhosts.
 
 ```
 #----------------------------------------------
-# CONTACT APP LOCAL 
+# CONTACT APP LOCAL
 #----------------------------------------------
 
 <VirtualHost contacts.com:80>
