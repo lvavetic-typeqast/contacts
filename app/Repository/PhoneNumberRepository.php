@@ -25,7 +25,7 @@ class PhoneNumberRepository extends Repository
 
         return $phoneNumbers;
     }
-    
+
     /**
      * Get phone number by phone number id
      *
@@ -42,7 +42,7 @@ class PhoneNumberRepository extends Repository
 
         return $phoneNumber ? $phoneNumber : null;
     }
-    
+
     /**
      * Delete phone number by phone number id id
      *
@@ -53,13 +53,17 @@ class PhoneNumberRepository extends Repository
     {
         $phoneNumberModel = new PhoneNumber();
 
-        $phoneNumber = $phoneNumberModel->findOrFail($id);
-        
+        $phoneNumber = $phoneNumberModel->find($id);
+
+        if (! $phoneNumber) {
+            return null;
+        }
+
         $phoneNumber->delete();
-        
-        return $phoneNumber ? $phoneNumber->delete() : null;
+
+        return $phoneNumber;
     }
-    
+
     /**
      * Create new phone number
      *
@@ -73,12 +77,12 @@ class PhoneNumberRepository extends Repository
         $phoneNumberModel->contact_id = $inputs['contact_id'];
         $phoneNumberModel->number = $inputs['number'];
         $phoneNumberModel->label = $inputs['label'];
-        
+
         $phoneNumberModel->save();
 
         return $phoneNumberModel;
     }
-    
+
     /**
      * Find phone number by id and update it
      *
@@ -89,13 +93,13 @@ class PhoneNumberRepository extends Repository
     public function update(array $inputs, int $id) : ?PhoneNumber
     {
         $phoneNumberModel = new PhoneNumber();
-        
-        $phoneNumber = $phoneNumberModel->findOrFail($id);
+
+        $phoneNumber = $phoneNumberModel->find($id);
 
         $phoneNumber->contact_id = $inputs['contact_id'];
         $phoneNumber->number = $inputs['number'];
         $phoneNumber->label = $inputs['label'];
-        
+
         $phoneNumber->save();
 
         return $phoneNumber;
