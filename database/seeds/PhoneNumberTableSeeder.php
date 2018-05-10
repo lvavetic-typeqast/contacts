@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
-use App\Model\Contact;
+use App\Model\PhoneNumber;
 
 class PhoneNumberTableSeeder extends Seeder
 {
@@ -14,16 +12,10 @@ class PhoneNumberTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        
-        $contactIds = Contact::all()->pluck('id')->toArray();
-        
-        foreach (range(1,50) as $index) {
-            DB::table('phone_number')->insert([
-                'contact_id' => $faker->randomElement($contactIds),
-                'number' => $faker->phoneNumber,
-                'label' => $faker->word,
-            ]);
-        }
+        $count = 100;
+
+        factory(PhoneNumber::class, $count)->create()->each(function ($phone) {
+            $phone->make();
+        });
     }
 }

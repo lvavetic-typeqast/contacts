@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-use Faker\Factory as Faker;
+use App\Model\Contact;
 
 class ContactTableSeeder extends Seeder
 {
@@ -13,14 +12,10 @@ class ContactTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-        
-        foreach (range(1,50) as $index) {
-            DB::table('contact')->insert([
-                'firstname' => $faker->firstName,
-                'lastname' => $faker->lastName,
-                'email' => $faker->email,
-            ]);
-        }
+        $count = 100;
+
+        factory(Contact::class, $count)->create()->each(function ($contact) {
+            $contact->make();
+        });
     }
 }
