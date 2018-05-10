@@ -26,7 +26,7 @@ class ContactRepository extends Repository
 
         return $contacts;
     }
-    
+
     /**
      * Search all contacts
      *
@@ -49,7 +49,7 @@ class ContactRepository extends Repository
 
         return $contacts;
     }
-    
+
     /**
      * Get contact by contact id
      *
@@ -66,7 +66,7 @@ class ContactRepository extends Repository
 
         return $contact ? $contact : null;
     }
-    
+
     /**
      * Delete contact by contact id
      *
@@ -78,10 +78,10 @@ class ContactRepository extends Repository
         $contactModel = new Contact();
 
         $contact = $contactModel->find($id);
-        
+
         return $contact ? $contact->delete() : null;
     }
-    
+
     /**
      * Create new contact
      *
@@ -91,19 +91,21 @@ class ContactRepository extends Repository
     public function create(array $inputs) : Contact
     {
         $contactModel = new Contact();
-    
+
         $contactModel->firstname = $inputs['firstname'];
         $contactModel->lastname = $inputs['lastname'];
         $contactModel->email = $inputs['email'];
         $contactModel->is_favorite = $inputs['is_favorite'];
-        
+
         $contactModel->save();
-        
-        $this->saveNumber($contactModel, $inputs['numbers']);
+
+        foreach ($inputs['numbers'] as $key => $input) {
+            $this->saveNumber($contactModel, $input);
+        }
 
         return $contactModel;
     }
-    
+
     /**
      * Find contact by id and update it
      *
@@ -114,23 +116,23 @@ class ContactRepository extends Repository
     public function update(array $inputs, int $id) : ?Contact
     {
         $contactModel = new Contact();
-        
+
         $contact = $contactModel->find($id);
-        
+
         if (! $contact) {
             return null;
         }
-        
+
         $contact->firstname = $inputs['firstname'];
         $contact->lastname = $inputs['lastname'];
         $contact->email = $inputs['email'];
         $contact->is_favorite = $inputs['is_favorite'];
-        
+
         $contact->save();
-       
+
         return $contact;
     }
-    
+
     /**
      * Save numbers relation
      *
@@ -138,7 +140,7 @@ class ContactRepository extends Repository
      * @param  array $input
      * @return void
      */
-    private function saveNumber(Contact $contact, int $input) : void
+    private function saveNumber(Contact $contact, $input) : void
     {
         $phoneNumber = new PhoneNumber();
 

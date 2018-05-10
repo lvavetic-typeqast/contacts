@@ -41,7 +41,7 @@ class ContactRequest extends FormRequest
             'email' => cleanup($this->input('email')),
             'profile_photo' => cleanup($this->file('profile_photo')),
             'is_favorite' => cleanup($this->input('is_favorite')),
-            'numbers' => cleanup($this->input('numbers')),
+            'numbers' => $this->input('numbers'),
         ];
 
         return $input;

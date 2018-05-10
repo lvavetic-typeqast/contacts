@@ -10,6 +10,6 @@ if ( ! function_exists('cleanup'))
      */
     function cleanup($string)
     {
-        return cleanupEmptySpaces(html_entity_decode(strip_tags($string)));
+        return html_entity_decode(strip_tags($string));
     }
 }
