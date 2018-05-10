@@ -14,9 +14,9 @@ class PhoneNumberController extends Controller
      * @param \App\Repository\PhoneNumberRepository $phoneNumberRepository
      * @return \Illuminate\Http\Response
      */
-    public function paginate(PhoneNumberRepository $phoneNumberRepository) : object
+    public function index(PhoneNumberRepository $phoneNumberRepository) : object
     {
-        $phoneNumbers = $phoneNumberRepository->get(30,15);
+        $phoneNumbers = $phoneNumberRepository->paginate(30,15);
 
         $phoneNumberResource = new PhoneNumberResource($phoneNumbers);
 

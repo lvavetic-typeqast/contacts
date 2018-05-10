@@ -11,7 +11,7 @@ class ContactTest extends TestCase
     use RefreshDatabase;
 
      /**
-     * Test create contact
+     * Test contact insert method
      *
      * @return void
      */
@@ -35,7 +35,7 @@ class ContactTest extends TestCase
     }
 
     /**
-     * Contact show
+     * Contact Controller show method
      *
      * @return void
      */
@@ -51,5 +51,26 @@ class ContactTest extends TestCase
 
         $response
             ->assertStatus(200);
+    }
+
+    /**
+     * Contact Controller index method
+     *
+     * @return void
+     */
+    public function testIndexContact()
+    {
+        factory(Contact::class, 30)->create();
+
+        $contact = Contact::first();
+
+        $response = $this->json('GET', 'api/contacts/');
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment([
+                'firstname' => $contact->firstname,
+                'lastname' => $contact->lastname,
+            ]);
     }
 }

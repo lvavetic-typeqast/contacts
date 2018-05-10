@@ -14,9 +14,9 @@ class ContactController extends Controller
      * @param \App\Repository\ContactRepository $contactRepository
      * @return \Illuminate\Http\Response
      */
-    public function paginate(ContactRepository $contactRepository) : object
+    public function index(ContactRepository $contactRepository) : object
     {
-        $contacts = $contactRepository->get(30,15);
+        $contacts = $contactRepository->paginate(30,15);
 
         $contactResource = new ContactResource($contacts);
 
