@@ -14,7 +14,7 @@ class ContactRepository extends Repository
      * @param  int  $perPage
      * @return \App\Model\Contact
      */
-    public function get(int $limit = 20, int $perPage = 15) : object
+    public function paginate(int $limit = 20, int $perPage = 15) : object
     {
         $contactModel = new Contact();
 

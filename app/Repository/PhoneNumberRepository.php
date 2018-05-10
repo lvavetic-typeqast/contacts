@@ -13,7 +13,7 @@ class PhoneNumberRepository extends Repository
      * @param  int  $limit
      * @return \App\Model\PhoneNumber
      */
-    public function get(int $limit = 20, int $perPage = 15) : object
+    public function paginate(int $limit = 20, int $perPage = 15) : object
     {
         $phoneNumberModel = new PhoneNumber();
 

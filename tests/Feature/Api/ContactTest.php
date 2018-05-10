@@ -35,24 +35,21 @@ class ContactTest extends TestCase
     }
 
     /**
-     * Contact index page
+     * Contact show
      *
      * @return void
      */
-    public function testIndexContact()
+    public function testShowContact()
     {
         factory(Contact::class, 30)->create();
 
-        $contacts = Contact::paginate(15);
-        $contact = $contacts->random();
+        $contact = Contact::first();
 
-        $response = $this->get('api/contacts/');
+        $route = 'api/contact/'.$contact->id.'/';
+
+        $response = $this->json('GET', $route);
 
         $response
-            ->assertStatus(200)
-            ->assertJsonFragment([
-                'email' => $contact->email,
-                'lastname' => $contact->lastname,
-            ]);
+            ->assertStatus(200);
     }
 }
