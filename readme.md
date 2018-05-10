@@ -45,8 +45,15 @@ Copy following lines to `C:/wamp/bin/apache/apachex.y.z/conf/extra/httpd-vhosts.
 ```
 git clone https://github.com/Luka1812/contacts.git
 ```
+### ** Step 4: ENV **
 
-### ** Step 4: Composer **
+Create env file from env.example:
+
+```
+env.example
+```
+
+### ** Step 5: Composer **
 
 Run following command in terminal:
 
@@ -54,7 +61,15 @@ Run following command in terminal:
 composer update
 ```
 
-### ** Step 5: npm **
+### ** Step 6: Key **
+
+Run following command in terminal:
+
+```
+php artisan key:generate
+```
+
+### ** Step 7: npm **
 
 Run following command in terminal:
 
@@ -66,15 +81,26 @@ npm install
 npm run development
 ```
 
-### ** Step 6: Database **
+### ** Step 8: Database **
 
 Create database schema `contacts_db`.
+Create database schema for testing `contacts_db_test`.
+
+Set default character set utf8mb4 and collate utf8mb4_unicode-ci.
 
 Run following commands in terminal to start migrations and seeders:
 
 ```
 php artisan migrate:refresh
 php artisan db:seed
+```
+
+### ** Step 9: UNIT TEST **
+
+Run following commands in terminal to start unit testing:
+
+```
+./vendor/bin/phpunit
 ```
 
 
