@@ -11,7 +11,7 @@ class ContactTest extends TestCase
     use RefreshDatabase;
 
      /**
-     * Test contact insert method
+     * Test Contact Controller insert method
      *
      * @return void
      */
@@ -35,7 +35,7 @@ class ContactTest extends TestCase
     }
 
     /**
-     * Contact Controller show method
+     * test Contact Controller show method
      *
      * @return void
      */
@@ -54,7 +54,7 @@ class ContactTest extends TestCase
     }
 
     /**
-     * Contact Controller index method
+     * test Contact Controller index method
      *
      * @return void
      */
@@ -71,6 +71,36 @@ class ContactTest extends TestCase
             ->assertJsonFragment([
                 'firstname' => $contact->firstname,
                 'lastname' => $contact->lastname,
+            ]);
+    }
+
+    /**
+     * test Contact Controller update method
+     *
+     * @return void
+     */
+    public function testUpdateContact()
+    {
+        factory(Contact::class, 30)->create();
+
+        $contact = Contact::first();
+
+        $array = [
+            'firstname' => $this->faker->firstName,
+            'lastname' => $this->faker->lastName,
+            'email' => $this->faker->email,
+            'is_favorite' => null,
+        ];
+
+        $route = 'api/contact/'.$contact->id.'/';
+     
+        $response = $this->json('PUT', $route, $array);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment([
+                'email' => $array['email'],
+                'lastname' => $array['lastname'],
             ]);
     }
 }
