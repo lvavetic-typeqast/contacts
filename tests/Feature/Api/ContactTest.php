@@ -93,7 +93,7 @@ class ContactTest extends TestCase
         ];
 
         $route = 'api/contact/'.$contact->id.'/';
-     
+
         $response = $this->json('PUT', $route, $array);
 
         $response
@@ -101,6 +101,29 @@ class ContactTest extends TestCase
             ->assertJsonFragment([
                 'email' => $array['email'],
                 'lastname' => $array['lastname'],
+            ]);
+    }
+
+     /**
+     * test Contact Controller delete method
+     *
+     * @return void
+     */
+    public function testDeleteContact()
+    {
+        factory(Contact::class, 30)->create();
+
+        $contact = Contact::first();
+
+        $route = 'api/contact/'.$contact->id.'/';
+
+        $response = $this->json('DELETE', $route);
+
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment([
+                'email' => $contact->email,
+                'firstname' => $contact->firstname,
             ]);
     }
 }
