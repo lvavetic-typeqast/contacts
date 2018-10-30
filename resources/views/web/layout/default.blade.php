@@ -1,9 +1,13 @@
 <!doctype html>
 <html lang='en'>
 <head>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/black/pace-theme-minimal.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <meta charset='utf-8'>
+    <title>@yield('metaTitle')</title>
+    <meta name='description' content='@yield('metaDescription')'>
+    <style>
+        {!! file_get_contents(public_path('css/web.min.css')) !!}
+    </style>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 </head>
 <body>
     <div class="container-fluid">

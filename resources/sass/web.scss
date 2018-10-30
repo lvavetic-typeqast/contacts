@@ -6,7 +6,6 @@
 
 // Functions
 @import "node_modules/bootstrap/scss/functions";
-@import 'default/functions';
 
 // Variables
 @import 'web/variables';
@@ -52,11 +51,6 @@
 
 // Bootstrap Javascript Components
 @import "node_modules/bootstrap/scss/tooltip";
-
-// Default
-@import 'default/mixins';
-@import 'default/utility';
-@import 'default/components';
 
 // Web
 @import 'web/layout';
