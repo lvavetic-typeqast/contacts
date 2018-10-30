@@ -14,11 +14,7 @@
         <div class='wrapper-header'>
             <div class='container-fluid'>
                 <div class='header-logotip'>
-                    <!--include logo -->
-                </div>
-
-                <div class='header-menu d-md-none'>
-                    <a href='' class='menu-icon' id='menu-icon'><i class='far fa-bars'></i></a>
+                    @include('web.includes.header.logo')
                 </div>
 
                 <div class='header-navigation' id='menu-navigation'>
