@@ -40,7 +40,9 @@
 
     <footer>
         <div class="wrapper-footer">
-            aa
+            <hr class='bg-secondary my-4'>
+
+            @include('web.includes.footer.copyright')
         </div>
     </footer>
 
