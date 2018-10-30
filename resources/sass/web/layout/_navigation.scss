@@ -3,3 +3,34 @@
 // NAVIGATION
 //
 //============================================================================================
+
+ul.navigation {
+  padding-left: 10px;
+
+  li {
+    display: inline-block;
+
+    a {
+      display: block;
+      padding: 12px 12px;
+      font-size: 1.0rem;
+      font-weight: bold;
+      color: theme-color('tertiary');
+      text-transform: uppercase;
+
+      &.active {
+        color: $white;
+      }
+
+      &:hover, &:focus, &:active {
+        color: theme-color('primary');
+        text-decoration: none;
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      display: block;
+      text-align: center;
+    }
+  }
+}

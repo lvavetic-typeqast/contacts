@@ -10,20 +10,43 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class='row'>
-            <div class='col-2'>
-               <!-- include left sidebar -->
-            </div>
-            <div class="col-8">
-                @yield('content')
-            </div>
-            <div class='col-2'>
-                 <!-- include right sidebar -->
+    <header class='hidden-print'>
+        <div class='wrapper-header'>
+            <div class='container-fluid'>
+                <div class='header-logotip'>
+                    <!--include logo -->
+                </div>
+
+                <div class='header-menu d-md-none'>
+                    <a href='' class='menu-icon' id='menu-icon'><i class='far fa-bars'></i></a>
+                </div>
+
+                <div class='header-navigation' id='menu-navigation'>
+                    @include('web.includes.header.navigation')
+                </div>
+
+                <div class='clearfix'></div>
             </div>
         </div>
+    </header>
+
+    <div class='wrapper-content'>
+        <div class=''>
+            <!--include sidebar-->
+        </div>
+
+        <div class="container">
+            @yield('content')
+        </div>
+
+        <div class='clearfix'></div>
     </div>
-    @yield('footer') 
+
+
+    <footer>
+        @yield('footer')
+    </footer>
+
 </body>
 </html>
     

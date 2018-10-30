@@ -1,5 +1,3 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/js/web/page/search.min.js": "/js/web/page/search.min.js"
+    "/css/web.min.css": "/css/web.min.css"
 }
