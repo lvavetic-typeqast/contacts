@@ -7,11 +7,13 @@
 .wrapper-content {
   padding-top: 30px;
   background-color: #fff;
-  padding-bottom: 50px;
-  min-height: 500px;
 
   .container {
     width: 100%;
     max-width: 1500px;
+
+    .contacts {
+      padding-top: 10px;
+    }
   }
 }

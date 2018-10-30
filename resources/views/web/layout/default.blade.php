@@ -38,9 +38,10 @@
         <div class='clearfix'></div>
     </div>
 
-
     <footer>
-        @yield('footer')
+        <div class="wrapper-footer">
+            aa
+        </div>
     </footer>
 
 </body>
