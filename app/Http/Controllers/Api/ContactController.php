@@ -16,7 +16,7 @@ class ContactController extends Controller
      */
     public function index(ContactRepository $contactRepository) : object
     {
-        $contacts = $contactRepository->paginate(30,15);
+        $contacts = $contactRepository->paginate(30, 8);
 
         $contactResource = new ContactResource($contacts);
 
@@ -63,7 +63,7 @@ class ContactController extends Controller
      *
      * @param \App\Http\Requests\ContactRequest $contactRequest
      * @param \App\Repository\ContactRepository $contactRepository
-     * @param int $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function insert(ContactRequest $contactRequest, ContactRepository $contactRepository) : object

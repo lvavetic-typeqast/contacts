@@ -36622,7 +36622,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -36633,6 +36633,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_search__ = __webpack_require__(69);
 //
 //
 //
@@ -36661,10 +36662,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            contacts: []
+            contacts: [],
+            search: ''
         };
     },
     mounted: function mounted() {
@@ -36672,7 +36676,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         axios.get('http://contactapp.test/api/contacts').then(function (data) {
             self.contacts = data.data.data;
         });
-    }
+    },
+
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_search__["a" /* default */]]
 });
 
 /***/ }),
@@ -36684,13 +36690,37 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("div", { staticClass: "input-group" }, [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.search,
+            expression: "search"
+          }
+        ],
+        staticClass: "form-control",
+        attrs: { type: "text" },
+        domProps: { value: _vm.search },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.search = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm._m(0)
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "contacts" }, [
       _c(
         "div",
         { staticClass: "row" },
-        _vm._l(_vm.contacts, function(contact) {
+        _vm._l(_vm.filteredContacts, function(contact) {
           return _c("div", { staticClass: "col-12 col-md-3" }, [
             _c("div", { staticClass: "card" }, [
               _c("img", {
@@ -36733,13 +36763,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group" }, [
-      _c("input", { staticClass: "form-control", attrs: { type: "text" } }),
-      _vm._v(" "),
-      _c("div", { staticClass: "input-group-append" }, [
-        _c("span", { staticClass: "input-group-text" }, [
-          _c("i", { staticClass: "fas fa-lg fa-search" })
-        ])
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-lg fa-search" })
       ])
     ])
   }
@@ -48354,6 +48380,25 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-a3792644", module.exports)
   }
 }
+
+/***/ }),
+/* 69 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    computed: {
+        filteredContacts: function filteredContacts() {
+            var _this = this;
+
+            return this.contacts.filter(function (contact) {
+                var fullname = contact.firstname.toLowerCase() + ' ' + contact.lastname.toLowerCase();
+
+                return fullname.match(_this.search.toLowerCase());
+            });
+        }
+    }
+});
 
 /***/ })
 /******/ ]);
