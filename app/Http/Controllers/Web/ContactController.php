@@ -12,6 +12,6 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return $this->response->view('web.pages.contact.index');
+        return $this->response->view('index');
     }
 } 

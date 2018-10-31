@@ -12,6 +12,6 @@ import App from './App.vue'
 window.Vue = require('vue');
 
 const app = new Vue({
-    el: '#content',
+    el: '#app',
     render: h => h(App),
 });
