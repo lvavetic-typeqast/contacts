@@ -39635,7 +39635,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -39678,13 +39678,81 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             id: this.$route.params.id,
-            contact: {}
+            contact: {},
+            errors: [],
+            editContact: false
         };
+    },
+
+    methods: {
+        saveContact: function saveContact() {
+            var self = this;
+
+            axios({
+                method: 'put',
+                url: 'http://contactapp.test/api/contact/' + this.id,
+                data: {
+                    id: this.id,
+                    firstname: this.contact.firstname,
+                    lastname: this.contact.lastname,
+                    email: this.contact.email,
+                    is_favorite: this.contact.is_favorite
+                }
+            }).then(function (data) {
+                if (data.data.errors) {
+                    return self.errors = data.data.errors;
+                }
+
+                //set new values to contact object
+                self.editContact = false;
+                return self.contact = data.data.data;
+            });
+        }
     },
     mounted: function mounted() {
         var self = this;
@@ -39716,64 +39784,325 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("div", { staticClass: "media-body" }, [
-        _c("button", { staticClass: "btn btn-primary float-right mb-1" }, [
-          _vm._v("Edit")
-        ]),
-        _vm._v(" "),
-        _c("h3", { staticClass: "mt-0" }, [
-          _vm._v(
-            _vm._s(_vm.contact.firstname) + " " + _vm._s(_vm.contact.lastname)
-          )
-        ]),
-        _vm._v(" "),
-        _c("h5", [_vm._v(_vm._s(_vm.contact.email))]),
-        _vm._v(" "),
-        _vm.contact.is_favorite === 1
-          ? _c("p", { staticClass: "font-weight-bold" }, [
-              _vm._v("\n                Favorite: Yes "),
-              _c("i", { staticClass: "fas fa-star" })
+        !_vm.editContact
+          ? _c("div", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary float-right mb-1",
+                  on: {
+                    click: function($event) {
+                      _vm.editContact = true
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c("h3", { staticClass: "mt-0" }, [
+                _vm._v(
+                  _vm._s(_vm.contact.firstname) +
+                    " " +
+                    _vm._s(_vm.contact.lastname)
+                )
+              ]),
+              _vm._v(" "),
+              _c("h5", [_vm._v(_vm._s(_vm.contact.email))]),
+              _vm._v(" "),
+              _vm.contact.is_favorite === 1
+                ? _c("p", { staticClass: "font-weight-bold" }, [
+                    _vm._v("\n                    Favorite: Yes "),
+                    _c("i", { staticClass: "fas fa-star" })
+                  ])
+                : _c("p", { staticClass: "font-weight-bold" }, [
+                    _vm._v("\n                    Favourite: No "),
+                    _c("i", { staticClass: "far fa-times-circle" })
+                  ])
             ])
-          : _c("p", { staticClass: "font-weight-bold" }, [
-              _vm._v("\n                Favourite: No "),
-              _c("i", { staticClass: "far fa-times-circle" })
-            ]),
-        _vm._v(" "),
-        !_vm.contact.numbers.length == 0
-          ? _c(
-              "table",
-              { staticClass: "table table-bordered table-hover mt-3" },
-              [
+          : _c("div", { staticClass: "mb-3" }, [
+              _vm.errors
+                ? _c(
+                    "div",
+                    _vm._l(_vm.errors, function(error) {
+                      return _c("p", { staticClass: "alert-danger p-2" }, [
+                        _vm._v(_vm._s(error.toString()))
+                      ])
+                    })
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-3" }, [
                 _vm._m(0),
                 _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.contact.numbers, function(number) {
-                    return _c("tr", [
-                      _c("td", [
-                        _c(
-                          "button",
-                          { staticClass: "btn btn-primary float-right mb-1" },
-                          [_vm._v("Edit")]
-                        ),
-                        _vm._v(" "),
-                        _c("p", { staticClass: "font-weight-bold mt-3" }, [
-                          _c("span", { staticClass: "text-uppercase" }, [
-                            _vm._v(_vm._s(number.label))
-                          ]),
-                          _vm._v(": " + _vm._s(number.number))
-                        ])
-                      ])
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.contact.firstname,
+                      expression: "contact.firstname"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Firstname",
+                    "aria-label": "Username",
+                    "aria-describedby": "basic-addon1"
+                  },
+                  domProps: { value: _vm.contact.firstname },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.contact, "firstname", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-3" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.contact.lastname,
+                      expression: "contact.lastname"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Lastname",
+                    "aria-label": "Username",
+                    "aria-describedby": "basic-addon1"
+                  },
+                  domProps: { value: _vm.contact.lastname },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.contact, "lastname", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-3" }, [
+                _vm._m(2),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.contact.email,
+                      expression: "contact.email"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Email",
+                    "aria-label": "Username",
+                    "aria-describedby": "basic-addon1"
+                  },
+                  domProps: { value: _vm.contact.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.contact, "email", $event.target.value)
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group mb-1" }, [
+                _c("div", { staticClass: "input-group-prepend" }, [
+                  _c("div", { staticClass: "input-group-text" }, [
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.contact.is_favorite,
+                            expression: "contact.is_favorite"
+                          }
+                        ],
+                        attrs: {
+                          id: "checkbox",
+                          type: "checkbox",
+                          "aria-label": "Checkbox for following text input"
+                        },
+                        domProps: {
+                          checked: Array.isArray(_vm.contact.is_favorite)
+                            ? _vm._i(_vm.contact.is_favorite, null) > -1
+                            : _vm.contact.is_favorite
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.contact.is_favorite,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  _vm.$set(
+                                    _vm.contact,
+                                    "is_favorite",
+                                    $$a.concat([$$v])
+                                  )
+                              } else {
+                                $$i > -1 &&
+                                  _vm.$set(
+                                    _vm.contact,
+                                    "is_favorite",
+                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                  )
+                              }
+                            } else {
+                              _vm.$set(_vm.contact, "is_favorite", $$c)
+                            }
+                          }
+                        }
+                      })
                     ])
-                  })
-                )
-              ]
-            )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: {
+                    "aria-label": "Text input with checkbox",
+                    disabled: "",
+                    placeholder: "Favorite"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger float-right ml-1",
+                  on: {
+                    click: function($event) {
+                      _vm.editContact = false
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary float-right mb-1",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.saveContact()
+                    }
+                  }
+                },
+                [_vm._v("Save")]
+              )
+            ]),
+        _vm._v(" "),
+        !_vm.editContact
+          ? _c("div", { staticClass: "phoneNumbers mt-3" }, [
+              !_vm.contact.numbers.length == 0
+                ? _c(
+                    "table",
+                    { staticClass: "table table-bordered table-hover mt-3" },
+                    [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.contact.numbers, function(number) {
+                          return _c("tr", [
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn btn-primary float-right mb-1"
+                                },
+                                [_vm._v("Edit")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                { staticClass: "font-weight-bold mt-3" },
+                                [
+                                  _c(
+                                    "span",
+                                    { staticClass: "text-uppercase" },
+                                    [_vm._v(_vm._s(number.label))]
+                                  ),
+                                  _vm._v(": " + _vm._s(number.number))
+                                ]
+                              )
+                            ])
+                          ])
+                        })
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ])
           : _vm._e()
       ])
     ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_c("i", { staticClass: "fas fa-file-signature" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_c("i", { staticClass: "fas fa-signature" })]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_c("i", { staticClass: "far fa-envelope" })]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
