@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ contact.firstname }} {{ contact.lastname }}</h5>
                             <p class="card-text">{{ contact.email }}</p>
-                            <a href="#" class="btn btn-primary">Go to contact</a>
+                            <router-link v-bind:to="/contact/ + contact.id"><a class="btn btn-primary">Go to contact</a></router-link>
                         </div>
                     </div>
                 </div>

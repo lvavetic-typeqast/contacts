@@ -1,5 +1,6 @@
 import Contacts from '../components/pages/contacts'
 import FavouriteContacts from '../components/pages/favouriteContacts'
+import Contact from '../components/pages/contact'
 
 
 export default [
@@ -10,5 +11,9 @@ export default [
     {
         path: '/favourite',
         component: FavouriteContacts
+    },
+    {
+        path: '/contact/:id',
+        component: Contact
     },
 ]
