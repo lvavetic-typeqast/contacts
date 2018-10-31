@@ -10,7 +10,7 @@ $factory->define(PhoneNumber::class, function (Faker $faker) {
     $contact = DB::table('contact')->inRandomOrder()->first(['id']);
     return [
         'contact_id' => $contact->id,
-        'label' => $faker->word,
+        'label' => $faker->firstName.' '.$faker->lastName,
         'number' => $faker->phoneNumber,
     ];
 });
