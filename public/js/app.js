@@ -39747,7 +39747,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (data.data.errors) {
                     return self.errors = data.data.errors;
                 }
-
+                console.log(data.data.data);
                 //set new values to contact object
                 self.editContact = false;
                 return self.contact = data.data.data;
@@ -39809,7 +39809,7 @@ var render = function() {
               _vm._v(" "),
               _c("h5", [_vm._v(_vm._s(_vm.contact.email))]),
               _vm._v(" "),
-              _vm.contact.is_favorite === 1
+              _vm.contact.is_favorite == 1
                 ? _c("p", { staticClass: "font-weight-bold" }, [
                     _vm._v("\n                    Favorite: Yes "),
                     _c("i", { staticClass: "fas fa-star" })

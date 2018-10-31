@@ -7,7 +7,7 @@
                     <button v-on:click="editContact = true" class="btn btn-primary float-right mb-1">Edit</button>
                     <h3 class="mt-0">{{ contact.firstname }} {{ contact.lastname }}</h3>
                     <h5>{{ contact.email }}</h5>
-                    <p v-if="contact.is_favorite === 1" class="font-weight-bold">
+                    <p v-if="contact.is_favorite == 1" class="font-weight-bold">
                         Favorite: Yes <i class="fas fa-star"></i>
                     </p>
                     <p v-else class="font-weight-bold">
@@ -98,7 +98,7 @@
                     if (data.data.errors) {
                         return self.errors = data.data.errors;
                     }
-
+                    console.log(data.data.data);
                     //set new values to contact object
                     self.editContact = false;
                     return self.contact = data.data.data;
