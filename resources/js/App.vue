@@ -17,7 +17,7 @@
             </div>
 
             <div class="container">
-                <contacts></contacts>
+                <router-view></router-view>
             </div>
 
             <div class='clearfix'></div>
