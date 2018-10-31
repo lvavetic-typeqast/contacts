@@ -9,43 +9,47 @@
     </style>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>window.Laravel = { csrfToken: '{{ csrf_token() }}' }</script>
 </head>
 <body>
-    <header class='hidden-print'>
-        <div class='wrapper-header'>
-            <div class='container-fluid'>
-                <div class='header-logotip'>
-                    @include('web.includes.header.logo')
-                </div>
+    <div>
+        <header class='hidden-print'>
+            <div class='wrapper-header'>
+                <div class='container-fluid'>
+                    <div class='header-logotip'>
+                        @include('web.includes.header.logo')
+                    </div>
 
-                <div class='header-navigation' id='menu-navigation'>
-                    @include('web.includes.header.navigation')
+                    <div class='header-navigation' id='menu-navigation'>
+                        @include('web.includes.header.navigation')
+                    </div>
+                    <div class='clearfix'></div>
                 </div>
-                <div class='clearfix'></div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div class='wrapper-content'>
-        <div class=''>
-            <!--include sidebar-->
+        <div class='wrapper-content'>
+            <div class=''>
+                <!--include sidebar-->
+            </div>
+
+            <div class="container">
+                @yield('content')
+            </div>
+
+            <div class='clearfix'></div>
         </div>
 
-        <div class="container">
-            @yield('content')
-        </div>
+        <footer>
+            <div class="wrapper-footer">
+                <hr class='bg-secondary my-4'>
 
-        <div class='clearfix'></div>
+                @include('web.includes.footer.copyright')
+            </div>
+            <script src="{{ asset('js/app.js') }}"> </script>
+        </footer>
     </div>
-
-    <footer>
-        <div class="wrapper-footer">
-            <hr class='bg-secondary my-4'>
-
-            @include('web.includes.footer.copyright')
-        </div>
-    </footer>
-
 </body>
 </html>
     

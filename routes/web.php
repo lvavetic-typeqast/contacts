@@ -14,4 +14,4 @@ $router->get('/', function () {
     return view('welcome');
 });
 
-$router->get('contacts/', 'ContactController@index');
+$router->get('/', 'ContactController@index');
