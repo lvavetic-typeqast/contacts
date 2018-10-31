@@ -26,25 +26,25 @@
 </template>
 
 <script>
-    import search from '../mixins/search';
+    import search from '../../mixins/search';
 
-export default {
-    data ()  {
-        return {
-            contacts: [],
-            search: ''
-        }
-    },
-    mounted () {
-        let self = this
-        axios
-            .get('http://contactapp.test/api/contacts')
-            .then(function(data){
-                self.contacts = data.data.data;
-            })
-    },
-    mixins: [search]
-}
+    export default {
+        data ()  {
+            return {
+                contacts: [],
+                search: ''
+            }
+        },
+        mounted () {
+            let self = this
+            axios
+                .get('http://contactapp.test/api/contacts/favourite')
+                .then(function(data){
+                    self.contacts = data.data.data;
+                })
+        },
+        mixins: [search]
+    }
 </script>
 
 <style scoped>

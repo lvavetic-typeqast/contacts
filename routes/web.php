@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Routing\Router;
+use Illuminate\Http\Request;
 
 /*  @var  $router  \Illuminate\Routing\Router          */
 
@@ -10,8 +10,8 @@ use Illuminate\Routing\Router;
 |--------------------------------------------------------------------------
 */
 
-$router->get('/', function () {
-    return view('welcome');
-});
-
-$router->get('/', 'ContactController@index');
+Route::get('/{vue_capture?}', function (Request $request) {
+    if ( ! $request->ajax() ) {
+        return view('index');
+    }
+})->where('vue_capture', '.*');

@@ -14,15 +14,34 @@ class ContactRepository extends Repository
      * @param  int  $perPage
      * @return \App\Model\Contact
      */
-    public function paginate(int $limit = 20, int $perPage = 15) : object
+    public function paginate() : object
     {
         $contactModel = new Contact();
 
         $contacts = $contactModel
             ->with('numbers')
             ->orderBy('id', 'asc')
-            ->limit($limit)
-            ->paginate($perPage);
+            ->paginate();
+
+        return $contacts;
+    }
+
+    /**
+     * Get all contacts
+     *
+     * @param  int  $limit
+     * @param  int  $perPage
+     * @return \App\Model\Contact
+     */
+    public function getFavourite() : object
+    {
+        $contactModel = new Contact();
+
+        $contacts = $contactModel
+            ->where('is_favorite', 1)
+            ->with('numbers')
+            ->orderBy('id', 'asc')
+            ->paginate();
 
         return $contacts;
     }

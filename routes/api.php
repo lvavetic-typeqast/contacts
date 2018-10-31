@@ -8,6 +8,7 @@
 
 // contacts
 $router->get('contacts/', 'ContactController@index');
+$router->get('contacts/favourite', 'ContactController@favourite');
 $router->get('contact/{id}/', 'ContactController@show');
 $router->post('contact/', 'ContactController@insert');
 $router->post('contact_search/', 'ContactController@search');

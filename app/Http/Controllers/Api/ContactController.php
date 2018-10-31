@@ -16,7 +16,22 @@ class ContactController extends Controller
      */
     public function index(ContactRepository $contactRepository) : object
     {
-        $contacts = $contactRepository->paginate(30, 8);
+        $contacts = $contactRepository->paginate();
+
+        $contactResource = new ContactResource($contacts);
+
+        return $contactResource->collection($contacts);
+    }
+
+    /**
+     * Get contacts by limit and per page
+     *
+     * @param \App\Repository\ContactRepository $contactRepository
+     * @return \Illuminate\Http\Response
+     */
+    public function favourite(ContactRepository $contactRepository) : object
+    {
+        $contacts = $contactRepository->getFavourite(1);
 
         $contactResource = new ContactResource($contacts);
 

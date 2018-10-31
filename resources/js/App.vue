@@ -37,7 +37,7 @@
     import Logo from './components/header/logo.vue'
 
     //content
-    import Contacts from './components/contacts.vue'
+    import Contacts from './components/pages/contacts.vue'
 
     //footer
     import Copyright from './components/footer/copyright.vue'
