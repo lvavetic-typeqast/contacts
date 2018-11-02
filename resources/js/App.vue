@@ -17,7 +17,9 @@
             </div>
 
             <div class="container">
-                <router-view></router-view>
+                <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutDownnp">
+                    <router-view></router-view>
+                </transition>
             </div>
 
             <div class='clearfix'></div>
@@ -32,6 +34,8 @@
 </template>
 
 <script>
+    require('animate.css');
+
     //header
     import Navigation from './components/header/navigation.vue'
     import Logo from './components/header/logo.vue'
