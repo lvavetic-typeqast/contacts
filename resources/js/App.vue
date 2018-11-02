@@ -17,7 +17,7 @@
             </div>
 
             <div class="container">
-                <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeOutDownnp">
+                <transition enter-active-class="animated slideInLeft" leave-active-class="animated slideOutRigth">
                     <router-view></router-view>
                 </transition>
             </div>

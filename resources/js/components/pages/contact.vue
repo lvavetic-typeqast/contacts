@@ -1,7 +1,7 @@
 <template>
     <div class="contact">
         <div class="media p-2">
-            <img class="mr-3" src="https://whatsupcairo.com/site/wp-content/uploads/2018/04/Avicii.jpg" alt="Generic placeholder image" width="300" height="300">
+            <img class="mr-3" v-bind:src="'/storage/images/profilephoto/' + contact.profile_photo" alt="Generic placeholder image" width="300" height="300">
             <div class="media-body">
                 <div v-if="!editContact">
                     <button v-on:click="editContact = true" class="btn btn-primary float-right mb-1">Edit</button>

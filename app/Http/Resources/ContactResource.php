@@ -22,6 +22,7 @@ class ContactResource extends Resource
             'firstname' => $this->firstname,
             'lastname' => $this->lastname,
             'email' => $this->email,
+            'profile_photo' => $this->profile_photo,
             'is_favorite' => $this->is_favorite,
             'created_at' => $this->created_at,
             'numbers' => $phoneNumberResource->collection($this->numbers),
